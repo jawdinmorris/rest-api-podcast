@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const {startDatabase} = require('./database/mongo');
+const {insertPodcast, getPodcasts} = require('./database/podcasts');
 
 // defining the Express app
 const app = express();
@@ -26,11 +28,16 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // defining an endpoint to return all podcasts
-app.get('/', (req, res) => {
-  res.send(podcast);
+app.get('/', async (req, res) => {
+  res.send(await getPodcasts());
 });
 
-// starting the server
-app.listen(3001, () => {
-  console.log('listening on port 3001');
+// start the in-memory MongoDB instance
+startDatabase().then(async () => {
+  await insertPodcast({title: 'Hello, now from the in-memory database!'});
+
+  // start the server
+    app.listen(3001, async () => {
+        console.log('listening on port 3001');
+    });
 });
