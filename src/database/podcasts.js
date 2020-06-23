@@ -3,6 +3,7 @@ const {ObjectID} = require('mongodb');
 
 const collectionName = 'podcasts';
 
+//Rename to CRUD
 async function insertPodcast(podcast) {
   const database = await getDatabase();
   const {insertedId} = await database.collection(collectionName).insertOne(podcast);

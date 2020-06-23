@@ -10,7 +10,7 @@ const {insertPodcast, deletePodcast, updatePodcast, getPodcasts} = require('./da
 // defining the Express app
 const app = express();
 
-// defining an array to work as the database (temporary solution)
+// Create JSON
 const podcast = [
   {title: 'Two Owls'}
 ];
