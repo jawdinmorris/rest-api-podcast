@@ -5,10 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const {startDatabase} = require('./database/mongo');
-const {  insertPodcast,
-  getPodcasts,
-  deletePodcast,
-  updatePodcast} = require('./database/podcasts');
+const {  insertPodcast, getPodcasts, deletePodcast, updatePodcast} = require('./database/podcasts');
 
 // defining the Express app
 const app = express();
